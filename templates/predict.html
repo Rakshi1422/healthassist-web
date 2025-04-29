@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Symptom Checker | HealthAssist{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <h2 class="mb-4 text-center">🔍 Symptom Checker Result</h2>
+
+    <div class="card shadow p-4">
+      <h4 class="text-success mb-3">🩺 Predicted Disease:</h4>
+      <p class="fs-5">{{ disease }}</p>
+
+      <hr>
+
+      <h4 class="text-primary mb-3">👨‍⚕️ Recommended Doctor:</h4>
+      <p class="fs-5">{{ doctor }}</p>
+
+      <div class="text-center mt-4">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Return to Dashboard</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

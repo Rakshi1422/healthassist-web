@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | HealthAssist{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>👋 Welcome, {{ first_name }} {{ last_name }}</h2>
+    <hr>
+
+    <h4>Your Appointments</h4>
+
+    {% if appointments %}
+    <table class="table table-hover mt-3">
+        <thead>
+            <tr>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.doctor_name }}</td>
+                <td>{{ appointment.appointment_date }}</td>
+                <td>{{ appointment.appointment_time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No appointments booked yet.</p>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="{{ url_for('book_appointment') }}" class="btn btn-primary">➕ Book New Appointment</a>
+    </div>
+</div>
+{% endblock %}

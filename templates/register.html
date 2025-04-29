@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Register | HealthAssist{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2 class="text-center mb-4">📝 Patient Registration</h2>
+
+    <form method="POST">
+      <div class="mb-3">
+        <label for="first_name" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="first_name" name="first_name" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="last_name" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="last_name" name="last_name" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="tel" class="form-control" id="phone" name="phone" required>
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Register</button>
+      </div>
+    </form>
+
+    {% if session.get('user_id') %}
+    <hr>
+    <div class="d-grid mt-3">
+      <button class="btn btn-dark" onclick="registerTouchID()">Register Touch ID 🔒</button>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+function registerTouchID() {
+  fetch('/webauthn/register/start', { method: 'POST' })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 'ok') {
+        alert("✅ Touch ID registered successfully!\nCredential ID: " + data.credential_id);
+      } else {
+        alert("❌ Registration failed.");
+      }
+    });
+}
+</script>
+{% endblock %}

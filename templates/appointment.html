@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Book Appointment | HealthAssist{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2 class="mb-4 text-center">🩺 Book New Appointment</h2>
+
+    <form method="POST" action="{{ url_for('appointment') }}">
+      <div class="mb-3">
+        <label for="doctor_name" class="form-label">Doctor's Name</label>
+        <input type="text" class="form-control" id="doctor_name" name="doctor_name" required placeholder="e.g., Dr. House">
+      </div>
+
+      <div class="mb-3">
+        <label for="appointment_date" class="form-label">Appointment Date</label>
+        <input type="date" class="form-control" id="appointment_date" name="appointment_date" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="appointment_time" class="form-label">Appointment Time</label>
+        <input type="time" class="form-control" id="appointment_time" name="appointment_time" required>
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Confirm Appointment</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
